@@ -1,4 +1,9 @@
 package infra.api;
 
-public class HttpMethod {
+public enum HttpMethod {
+    POST,
+    GET,
+    PUT,
+    PATCH,
+    DELETE
 }
