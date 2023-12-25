@@ -58,7 +58,8 @@ public class Steps {
     @When("I click to Drinks category")
     public void i_click_to_drinks_category() {
         DriverSetup driver = context.get("DriverSetup");
-        HomePage homePage = new HomePage(driver.getDriver());
+        driver.createPage(HomePage.class);
+        HomePage homePage = driver.getCurrentPage();
         homePage.clickOnDrinksCategory();
     }
 
@@ -66,7 +67,7 @@ public class Steps {
     @And("I click to plus button on item and add it to the cart")
     public void i_click_to_plus_button_on_item_and_add_it_to_the_cart() {
         DriverSetup driver = context.get("DriverSetup");
-        HomePage homePage = new HomePage(driver.getDriver());
+        HomePage homePage = driver.getCurrentPage();
         homePage.addItemToCart();
 
     }
@@ -74,14 +75,8 @@ public class Steps {
     @Then("I should see the total sum in the cart is {string}")
     public void i_should_see_the_total_sum_in_the_cart_is(String string) {
         DriverSetup driver = context.get("DriverSetup");
-        HomePage homePage = new HomePage(driver.getDriver());
+        HomePage homePage = driver.getCurrentPage();
         assertEquals(homePage.getCartSum(), string);
 
     }
-
-
-
-
-
-
 }
