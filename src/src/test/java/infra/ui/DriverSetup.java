@@ -10,20 +10,23 @@ import java.io.IOException;
 
 public class DriverSetup {
     ObjectMapper objectMapper = new ObjectMapper();
+    private WebDriver driver;
     Config config;
 
     {
         try {
-            config = objectMapper.readValue(new File("/Users/waaedazzam/IdeaProjects/Final-Project-Selenium/ConfigFile.json"), Config.class);
+            config = objectMapper.readValue(new File("C:\\Users\\USER\\IdeaProjects\\Project\\Final-Project-Selenium\\ConfigFile.json"), Config.class);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
     }
 
-    public WebDriver setDriver() {
+    public void DriverSetup(){
         System.setProperty("webdriver.chrome.driver", config.getChromeDriverPath());
-        ChromeDriver driver = new ChromeDriver();
+        this.driver = new ChromeDriver();
         driver.get(config.getUiURL());
-        return driver;
+    }
+    public WebDriver getDriver() {
+        return this.driver;
     }
 }
