@@ -13,6 +13,7 @@ public class Header extends BasePage {
 
     WebElement popupButton;
     WebElement userLoggidinName;
+    WebElement addToCartButton;
     public Header(WebDriver driver) {
         super(driver);
         initHeader();

@@ -55,16 +55,33 @@ public class Steps {
         assertEquals(header.getLoggedInName(),name);
     }
 
-    @Given("the user has a shopping cart")
-    public void the_user_has_a_shopping_cart(){
-        DriverSetup driver = new DriverSetup();
-        context.put("DriverSetup", driver);
-        HomePage homePage = driver.createPage(HomePage.class);
-        shoppingCart = new ShoppingCart();
+    @When("I click to Drinks category")
+    public void i_click_to_drinks_category() {
+        DriverSetup driver = context.get("DriverSetup");
+        HomePage homePage = new HomePage(driver.getDriver());
+        homePage.clickOnDrinksCategory();
     }
 
-    @When("the user adds an item with ID {string} and quantity {string} to the cart")
-    public void theUserAddsAnItemWithIDAndQuantityToTheCart(String itemId, String QTY) throws IOException {
-        shoppingCart.addItemtToCartViaApi(itemId,QTY);
+
+    @And("I click to plus button on item and add it to the cart")
+    public void i_click_to_plus_button_on_item_and_add_it_to_the_cart() {
+        DriverSetup driver = context.get("DriverSetup");
+        HomePage homePage = new HomePage(driver.getDriver());
+        homePage.addItemToCart();
+
     }
+
+    @Then("I should see the total sum in the cart is {string}")
+    public void i_should_see_the_total_sum_in_the_cart_is(String string) {
+        DriverSetup driver = context.get("DriverSetup");
+        HomePage homePage = new HomePage(driver.getDriver());
+        assertEquals(homePage.getCartSum(), string);
+
+    }
+
+
+
+
+
+
 }
