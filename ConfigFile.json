@@ -1,4 +1,6 @@
 {
-  "chromeDriverPath": "C:/Users/USER/IdeaProjects/Project/Final-Project-Selenium/chromedriver.exe",
-  "uiURL": "https://www.rami-levy.co.il/he"
+  "chromeDriverPath":"C:\\Users\\USER\\IdeaProjects\\Project\\Final-Project-Selenium\\chromedriver.exe",
+  "uiURL": "https://www.rami-levy.co.il/he",
+  "apiURL": "https://www.rami-levy.co.il/api/v2/",
+  "ecomToken": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczovL3d3dy1hcGkucmFtaS1sZXZ5LmNvLmlsIiwiYXVkIjoiaHR0cHM6Ly93d3ctYXBpLnJhbWktbGV2eS5jby5pbCIsImlhdCI6MTcwMzQ0NzUwNy40OTQ2MjUsIm5iZiI6MTcwMzQ0NzU2Ny40OTQ2MjUsImV4cCI6MTcwODYzMTUwNy40OTQ2MjUsImlkIjo5MjEwODksImVtYWlsIjoid2FhZWQwMTNAZ21haWwuY29tIiwiY2lkIjoiOTkwMDE1NzkzMTUifQ.Xl6cNOdXBT6q3CGTHvyKcF1VgEbJXc6eqAVhv-ZsbWg"
 }
