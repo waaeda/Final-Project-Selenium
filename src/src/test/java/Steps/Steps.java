@@ -20,11 +20,12 @@ public class Steps {
     private TestContext context = new TestContext();
     Header header;
     ShoppingCart shoppingCart;
-    @After
-    public void tearDown(){
-        DriverSetup driver = context.get("DriverSetup");
-        driver.close();
-    }
+    HomePage homePage;
+//    @After
+//    public void tearDown(){
+//        DriverSetup driver = context.get("DriverSetup");
+//        driver.close();
+//    }
     @Given("Im on the Rami Levy Home Page")
     public void im_on_the_rami_levy_home_page() {
         DriverSetup driver = new DriverSetup();
@@ -58,15 +59,16 @@ public class Steps {
     @When("I click to Drinks category")
     public void i_click_to_drinks_category() {
         DriverSetup driver = context.get("DriverSetup");
-        HomePage homePage = new HomePage(driver.getDriver());
-        homePage.clickOnDrinksCategory();
+       homePage = driver.createPage(HomePage.class);
+       homePage = driver.getCurrentPage();
+       homePage.clickOnDrinksCategory();
     }
 
 
     @And("I click to plus button on item and add it to the cart")
     public void i_click_to_plus_button_on_item_and_add_it_to_the_cart() {
         DriverSetup driver = context.get("DriverSetup");
-        HomePage homePage = new HomePage(driver.getDriver());
+        homePage = driver.getCurrentPage();
         homePage.addItemToCart();
 
     }
@@ -74,14 +76,15 @@ public class Steps {
     @Then("I should see the total sum in the cart is {string}")
     public void i_should_see_the_total_sum_in_the_cart_is(String string) {
         DriverSetup driver = context.get("DriverSetup");
-        HomePage homePage = new HomePage(driver.getDriver());
+        homePage = driver.getCurrentPage();
         assertEquals(homePage.getCartSum(), string);
 
     }
-
-
-
-
-
+    @Then("verify the that item added to cart is {string}")
+    public void verify_that_item_added_to_cart(String string){
+        DriverSetup driver = context.get("DriverSetup");
+        homePage = driver.getCurrentPage();
+        assertEquals(homePage.getNumOfItemsFromCart(),string);
+    }
 
 }
