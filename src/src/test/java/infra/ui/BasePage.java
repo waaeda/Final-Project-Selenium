@@ -7,5 +7,6 @@ public class BasePage {
 
     public BasePage(WebDriver driver) {
         this.driver = driver;
+        this.driver.manage().window().maximize();
     }
 }
