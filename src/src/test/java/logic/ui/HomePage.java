@@ -35,7 +35,6 @@ public class HomePage extends BasePage {
         WebDriverWait wait = new WebDriverWait(driver, 10);
         this.drinksElementBtn = wait.until(ExpectedConditions.presenceOfElementLocated(DRINKS_BTN));
         this.numOfItems = wait.until(ExpectedConditions.presenceOfElementLocated(NUM_OF_ITEMS_IN_CART));
-
     }
     public void clickOnDrinksCategory(){
         this.drinksElementBtn.click();
@@ -45,7 +44,6 @@ public class HomePage extends BasePage {
         clickAddButton();
     }
     private void hoverOnDiv() {
-
         WebDriverWait wait = new WebDriverWait(driver, 10);
         this.divElementToAdd = wait.until(ExpectedConditions.presenceOfElementLocated(ITEM_DIV_TO_ADD));
         ((JavascriptExecutor) driver).executeScript("window.scrollTo(0, 0);");
