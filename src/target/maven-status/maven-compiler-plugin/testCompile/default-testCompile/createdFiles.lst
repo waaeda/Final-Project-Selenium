@@ -1,5 +1,6 @@
 infra/api/HttpFacade.class
 logic/ui/HomePage.class
+logic/api/ShoppingCart.class
 infra/ui/DriverSetup.class
 infra/api/WrapApiResponse.class
 logic/api/ApiCalls.class
@@ -8,5 +9,4 @@ infra/Config.class
 Steps/Hooks.class
 infra/api/HttpMethod.class
 logic/ui/LoginPopup.class
-Steps/LoginSteps.class
 logic/ui/Header.class

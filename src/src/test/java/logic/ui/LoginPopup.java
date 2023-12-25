@@ -24,7 +24,6 @@ public class LoginPopup extends BasePage {
         WebDriverWait wait = new WebDriverWait(driver, 10);
 
         this.email = wait.until(ExpectedConditions.presenceOfElementLocated(By.id(EMAIL_INPUT)));
-
         this.password = wait.until(ExpectedConditions.presenceOfElementLocated(By.id(PASSWORD_INPUT)));
         this.submit = wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(SUBMIT_BUTTON)));
     }
