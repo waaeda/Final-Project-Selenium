@@ -15,7 +15,10 @@ public class HomePage extends BasePage {
 
     private static final By ITEM_DIV_TO_ADD = By.xpath("/html/body/div[1]/div/div/div[2]/div[1]/div[2]/div/div/div[1]/div[2]/div[2]/div/div/div[1]/div/img");
     private static final By NUM_OF_ITEMS_IN_CART = By.xpath("//*[@id=\"onlineCartHeader\"]/div[1]/div[1]/span[1]");
+<<<<<<< HEAD
     private static final By ESC_DELIVARY_BTN = By.xpath("//*[@id=\"close-popup\"]");
+=======
+>>>>>>> origin/main
     private static final By CART_SUM = By.xpath("/html//div[@id='__layout']/div[@class='bg-gray-100 nuxt-wrap']//div[@role='complementary']/div[@class='position-relative wrap-online-cart']/div[3]/div[@role='button']//span[@role='hidden']");
 
     WebElement numOfItems;
@@ -25,7 +28,10 @@ public class HomePage extends BasePage {
     WebElement plusElementBtn;
     WebElement divElementToAdd;
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> origin/main
     public HomePage(WebDriver driver) {
         super(driver);
         initPage();
@@ -33,9 +39,8 @@ public class HomePage extends BasePage {
 
     private void initPage() {
         WebDriverWait wait = new WebDriverWait(driver, 10);
-        this.drinksElementBtn = wait.until(ExpectedConditions.presenceOfElementLocated(DRINKS_BTN));
-        this.numOfItems = wait.until(ExpectedConditions.presenceOfElementLocated(NUM_OF_ITEMS_IN_CART));
 
+        this.numOfItems = wait.until(ExpectedConditions.presenceOfElementLocated(NUM_OF_ITEMS_IN_CART));
     }
     public void clickOnDrinksCategory(){
         WebDriverWait wait = new WebDriverWait(driver, 10);
@@ -47,7 +52,6 @@ public class HomePage extends BasePage {
         clickAddButton();
     }
     private void hoverOnDiv() {
-
         WebDriverWait wait = new WebDriverWait(driver, 10);
         this.divElementToAdd = wait.until(ExpectedConditions.presenceOfElementLocated(ITEM_DIV_TO_ADD));
         ((JavascriptExecutor) driver).executeScript("window.scrollTo(0, 0);");
@@ -58,7 +62,6 @@ public class HomePage extends BasePage {
         WebDriverWait wait = new WebDriverWait(driver, 10);
         this.plusElementBtn = wait.until(ExpectedConditions.presenceOfElementLocated(PLUS_BTN));
         plusElementBtn.click();
-
     }
     public String getNumOfItemsFromCart(){
         WebDriverWait wait = new WebDriverWait(driver, 10);

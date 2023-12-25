@@ -16,7 +16,11 @@ public class DriverSetup {
     private WebDriver driver;
     {
         try {
+<<<<<<< HEAD
             config = objectMapper.readValue(new File("C:\\Users\\kamel\\IdeaProjects\\Qa Learning\\Final-Project-Selenium\\ConfigFile.json"), Config.class);
+=======
+            config = objectMapper.readValue(new File("/Users/waaedazzam/IdeaProjects/Final-Project-Selenium/ConfigFile.json"), Config.class);
+>>>>>>> origin/main
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
