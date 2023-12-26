@@ -23,7 +23,7 @@ public class HomePage extends BasePage {
     private static final By SCHWEPPES_FILTER_BTN = By.xpath(" //*[@id=\"__layout\"]/div/div[1]/div[1]/div[3]/div[3]/div/div[1]/div[2]/div/div[3]/div[3]");
 
     private static final By SCHWEPPES_DIV_ITEM = By.cssSelector("img[src*='/product/7290019056119/small.jpg']");
-    private static final By SEARCH_INPUT = By.xpath("//*[@id=\"destination\"]");
+    private static final By SEARCH_INPUT1 = By.xpath("//*[@id=\"destination\"]");
     private static final By SEARCH_RESULT_PRODUCT_DIV = By.xpath("//*[@id=\"min-height-product-1\"]/div/div/div[2]");
     private static final By DIV_INFORMATION_PRODUCT =By.cssSelector("div[data-v-6039ce16] > div[data-v-6039ce16] > div[data-v-6039ce16]");
     private static final By CART_SUM = By.xpath("/html//div[@id='__layout']/div[@class='bg-gray-100 nuxt-wrap']//div[@role='complementary']/div[@class='position-relative wrap-online-cart']/div[3]/div[@role='button']//span[@role='hidden']");
@@ -50,7 +50,7 @@ public class HomePage extends BasePage {
     WebElement plusElementBtn;
     WebElement divElementToAdd;
     WebElement itemInCart;
-    WebElement searchInput;
+
     WebElement searchVoice;
     WebElement searchDropDownButton;
 
@@ -126,7 +126,7 @@ public class HomePage extends BasePage {
     }
 
     public void enterWordToSearch(){
-        searchInput = driver.findElement(SEARCH_INPUT);
+        searchInput = driver.findElement(SEARCH_INPUT1);
         searchInput.sendKeys("חלב");
         searchInput.sendKeys(Keys.RETURN);
     }
@@ -187,7 +187,7 @@ public class HomePage extends BasePage {
         this.searchDropDownButton = wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(SEARCH_DROP_DOWN_BUTTON)));
         this.searchDropDownButton.click();
     }
-}
+
     public boolean verifyItemViaComponents(){
         clickOnResultProduct();
         return checkCompnentsOfTheProduct();

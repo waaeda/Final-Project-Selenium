@@ -25,7 +25,7 @@ public class Steps {
         ShoppingCart shoppingCart = new ShoppingCart();
         shoppingCart.clearCartViaApi();
         DriverSetup driver = context.get("DriverSetup");
-//        driver.close();
+        driver.close();
     }
 
     @Given("Im on the Rami Levy Home Page")
