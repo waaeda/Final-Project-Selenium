@@ -19,12 +19,15 @@ import static org.testng.Assert.assertEquals;
 public class Steps {
     private TestContext context = new TestContext();
     Header header;
-    ShoppingCart shoppingCart;
+
     @After
-    public void tearDown(){
+    public void tearDown() throws IOException {
+        ShoppingCart shoppingCart = new ShoppingCart();
+        shoppingCart.clearCartViaApi();
         DriverSetup driver = context.get("DriverSetup");
         driver.close();
     }
+
     @Given("Im on the Rami Levy Home Page")
     public void im_on_the_rami_levy_home_page() {
         DriverSetup driver = new DriverSetup();
@@ -52,7 +55,7 @@ public class Steps {
     public void my_name_should_appear_in_the_header(String name) {
         DriverSetup driver = context.get("DriverSetup");
         header = driver.getCurrentPage();
-        assertEquals(header.getLoggedInName(),name);
+        assertEquals(header.getLoggedInName(), name);
     }
 
     @When("I click to Drinks category")
@@ -62,7 +65,6 @@ public class Steps {
         HomePage homePage = driver.getCurrentPage();
         homePage.clickOnDrinksCategory();
     }
-
 
     @And("I click to plus button on item and add it to the cart")
     public void i_click_to_plus_button_on_item_and_add_it_to_the_cart() {
@@ -77,6 +79,12 @@ public class Steps {
         DriverSetup driver = context.get("DriverSetup");
         HomePage homePage = driver.getCurrentPage();
         assertEquals(homePage.getCartSum(), string);
-
     }
+
+    @When("I Add Item With ID {string} And Quantity {string} To The Cart Via API")
+    public void iAddItemWithIDAndQuantityToTheCartViaAPI(String itemId, String QTY) throws IOException {
+        ShoppingCart shoppingCart = new ShoppingCart();
+        shoppingCart.addItemToCartViaApi(itemId, QTY);
+    }
+
 }

@@ -4,7 +4,10 @@ import java.io.IOException;
 
 public class ShoppingCart {
 
-    public void addItemtToCartViaApi(String itemId, String QTY) throws IOException {
+    public void addItemToCartViaApi(String itemId, String QTY) throws IOException {
         HttpFacade.addItemToCartByIdViaApi(itemId,QTY);
+    }
+    public void clearCartViaApi() throws IOException {
+        HttpFacade.clearCartViaApi();
     }
 }
