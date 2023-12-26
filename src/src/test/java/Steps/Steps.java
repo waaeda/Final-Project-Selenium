@@ -25,7 +25,7 @@ public class Steps {
         ShoppingCart shoppingCart = new ShoppingCart();
         shoppingCart.clearCartViaApi();
         DriverSetup driver = context.get("DriverSetup");
-        driver.close();
+//        driver.close();
     }
 
     @Given("Im on the Rami Levy Home Page")
@@ -44,7 +44,7 @@ public class Steps {
     }
 
     @And("I enter a valid {string} and {string} and click login button")
-    public void i_enter_a_valid_email_and_password_and_click_login_button(String email, String password) {
+    public void i_enter_a_valid_email_and_password_and_click_login_button(String email, String password) throws InterruptedException {
         DriverSetup driver = context.get("DriverSetup");
         LoginPopup loginPopup = driver.getCurrentPage();
         loginPopup.Login(email, password);
@@ -59,10 +59,11 @@ public class Steps {
     }
 
     @When("I click to Drinks category")
-    public void i_click_to_drinks_category() {
+    public void i_click_to_drinks_category() throws InterruptedException {
         DriverSetup driver = context.get("DriverSetup");
         driver.createPage(HomePage.class);
         HomePage homePage = driver.getCurrentPage();
+        Thread.sleep(3000);
         homePage.clickOnDrinksCategory();
     }
 
@@ -75,10 +76,42 @@ public class Steps {
     }
 
     @Then("I should see the total sum in the cart is {string}")
-    public void i_should_see_the_total_sum_in_the_cart_is(String string) {
+    public void i_should_see_the_total_sum_in_the_cart_is(String string){
+        DriverSetup driver = context.get("DriverSetup");
+        HomePage homePage = driver.getCurrentPage();;
+        assertEquals(homePage.getCartSum(), string);
+    }
+    @Then("I should see the total amount of items is {string}")
+    public void TotalAmountOfItmesInTheCart(String string){
         DriverSetup driver = context.get("DriverSetup");
         HomePage homePage = driver.getCurrentPage();
-        assertEquals(homePage.getCartSum(), string);
+        assertEquals(homePage.getCartNumOfItems(), string);
+    }
+    @And("I click on filter button and choose schweppes drinks")
+    public void chooseSchweppesDrink(){
+        DriverSetup driver = context.get("DriverSetup");
+        HomePage homePage = driver.getCurrentPage();
+        homePage.chooseShweppesDrink();
+    }
+    @Then("verify i got a schweppes drink")
+    public void verifySchweppesDrinksShowed(){
+        DriverSetup driver = context.get("DriverSetup");
+        HomePage homePage = driver.getCurrentPage();
+        assertEquals(homePage.verifySchweppesDrink(), "שוופס");
+    }
+
+    @When("I type milk in search input and click enter")
+    public void insertToSearchInput(){
+        DriverSetup driver = context.get("DriverSetup");
+        driver.createPage(HomePage.class);
+        HomePage homePage = driver.getCurrentPage();
+        homePage.enterWordToSearch();
+    }
+    @Then("milk products must showed")
+    public void VerifyResultofSearchInput(){
+        DriverSetup driver = context.get("DriverSetup");
+        HomePage homePage = driver.getCurrentPage();
+        assertEquals(homePage.verifyItemViaComponents(), true);
     }
 
     @When("I Add Item With ID {string} And Quantity {string} To The Cart Via API")

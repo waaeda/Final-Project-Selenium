@@ -27,7 +27,7 @@ public class LoginPopup extends BasePage {
         this.password = wait.until(ExpectedConditions.presenceOfElementLocated(By.id(PASSWORD_INPUT)));
         this.submit = wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(SUBMIT_BUTTON)));
     }
-    public void Login(String email,String password){
+    public void Login(String email,String password) throws InterruptedException {
         fillEmail(email);
         fillPassword(password);
         clickSubmit();
