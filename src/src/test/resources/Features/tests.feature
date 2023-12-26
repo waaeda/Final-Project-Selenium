@@ -9,8 +9,8 @@ Feature: Rami Levy Website Tests
     Then my 'ואעד' should appear in the header
 
   Scenario: Add Item To Cart Via API And Validate Via UI - Test By Waaed
-    When I Add Item With ID '377697' And Quantity '3' To The Cart Via API
-    Then Validate If the Item Added To The Cart By Item Barcode '7290018440629' And Quantity '3'
+    When I Add Item With ID '4093' And Quantity '3' To The Cart Via API
+    Then Validate If the Item Added To The Cart By Item Barcode '7290008690713' And Quantity '3'
 
 
 

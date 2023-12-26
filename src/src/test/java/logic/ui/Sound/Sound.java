@@ -6,7 +6,7 @@ import javax.sound.sampled.Clip;
 import java.io.File;
 
 public class Sound {
-    private static final String SOUND_PATH = "/Users/waaedazzam/IdeaProjects/Final-Project-Selenium/src/src/test/java/logic/ui/Sound/cheeseSearchVoice.wav";
+    private static final String SOUND_PATH = "/Users/waaedazzam/IdeaProjects/Final-Project-Selenium/src/src/test/java/logic/ui/Sound/TapuzemVoice.wav";
 
     public void startVoice(){
         PlayMusic(SOUND_PATH);

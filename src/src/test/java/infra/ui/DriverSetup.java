@@ -1,7 +1,7 @@
 package infra.ui;
 
 import infra.Config;
-import io.cucumber.messages.internal.com.fasterxml.jackson.databind.ObjectMapper;
+import io.cucumber.core.internal.com.fasterxml.jackson.databind.ObjectMapper;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;

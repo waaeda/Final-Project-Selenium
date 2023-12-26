@@ -69,5 +69,11 @@
             <version>7.15.0</version>
             <scope>test</scope>
         </dependency>
+        <dependency>
+            <groupId>io.cucumber</groupId>
+            <artifactId>messages</artifactId>
+            <version>17.1.1</version>
+            <scope>test</scope>
+        </dependency>
     </dependencies>
 </project>
