@@ -35,7 +35,7 @@ public class DriverSetup {
     public <T extends BasePage> T createPage(Class<T> pageType){
         return createPage(pageType, null);
     }
-    public <T extends BasePage> T createPage(Class<T> pageType, String url){
+    public <T extends BasePage> T createPage(Class<T> pageType, String url) throws RuntimeException {
         try {
             Constructor<T> constructor = pageType.getConstructor(WebDriver.class);
             if(url!=null){
