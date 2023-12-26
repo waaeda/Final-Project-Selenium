@@ -8,13 +8,13 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import logic.api.ShoppingCart;
-import logic.ui.Header;
-import logic.ui.HomePage;
-import logic.ui.LoginPopup;
+import logic.ui.*;
+import logic.ui.Sound.Sound;
 
 import java.io.IOException;
 
 import static org.testng.Assert.assertEquals;
+import static org.testng.Assert.assertTrue;
 
 public class Steps {
     private TestContext context = new TestContext();
@@ -32,6 +32,7 @@ public class Steps {
     public void im_on_the_rami_levy_home_page() {
         DriverSetup driver = new DriverSetup();
         context.put("DriverSetup", driver);
+        driver.createPage(HomePage.class);
     }
 
     @When("I click on open popup")
@@ -87,4 +88,56 @@ public class Steps {
         shoppingCart.addItemToCartViaApi(itemId, QTY);
     }
 
+    @Then("Validate If the Item Added To The Cart By Item Barcode {string} And Quantity {string}")
+    public void validateIfTheItemAddedToTheCartByItemBarcode(String barcode,String QTY) {
+        DriverSetup driver = context.get("DriverSetup");
+        driver.createPage(HomePage.class);
+        HomePage homePage = driver.getCurrentPage();
+        Item item = homePage.getItemFromCartByBarcode(barcode);
+        assertEquals(item.getBarcode(),barcode);
+        assertEquals(item.getQuantity(),QTY);
+    }
+
+    @When("I search for Product By Name {string}")
+    public void iSearchForProductByName(String itemName){
+        DriverSetup driver = context.get("DriverSetup");
+        driver.createPage(HomePage.class);
+        HomePage homePage = driver.getCurrentPage();
+        homePage.searchForItem(itemName);
+    }
+
+    @Then("The Product {string} Should Be The First Item At The Search Page")
+    public void theProductShouldBeTheFirstItemAtTheSearchPage(String itemName) {
+        DriverSetup driver = context.get("DriverSetup");
+        driver.createPage(SearchPage.class);
+        SearchPage searchPage = driver.getCurrentPage();
+        assertEquals(searchPage.getPageTitle(),itemName);
+        assertTrue(searchPage.checkIfItemFound(itemName));
+    }
+
+    @When("I Click On Search By Voice")
+    public void iClickOnSearchByVoice() {
+        DriverSetup driver = context.get("DriverSetup");
+        driver.createPage(HomePage.class);
+        HomePage homePage = driver.getCurrentPage();
+        homePage.clickOnSearchVoice();
+    }
+
+    @And("I Play Audio File")
+    public void iPlayAudioFile() {
+        DriverSetup driver = context.get("DriverSetup");
+        Sound sound = new Sound();
+        sound.startVoice();
+        driver.createPage(HomePage.class);
+        HomePage homePage = driver.getCurrentPage();
+        homePage.moveToSearchPage();
+    }
+
+    @And("I Should Be Redirected To The Search Page")
+    public void iShouldBeRedirectidToTheSearchPage() {
+        DriverSetup driver = context.get("DriverSetup");
+        driver.createPage(SearchPage.class);
+        SearchPage searchPage = driver.getCurrentPage();
+        searchPage.closeDropDown();
+    }
 }

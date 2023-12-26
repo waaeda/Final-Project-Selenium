@@ -2,13 +2,16 @@
 /Users/waaedazzam/IdeaProjects/Final-Project-Selenium/src/src/test/java/infra/api/HttpMethod.java
 /Users/waaedazzam/IdeaProjects/Final-Project-Selenium/src/src/test/java/Steps/Steps.java
 /Users/waaedazzam/IdeaProjects/Final-Project-Selenium/src/src/test/java/infra/TestContext.java
+/Users/waaedazzam/IdeaProjects/Final-Project-Selenium/src/src/test/java/logic/ui/Sound/Sound.java
 /Users/waaedazzam/IdeaProjects/Final-Project-Selenium/src/src/test/java/logic/ui/Header.java
 /Users/waaedazzam/IdeaProjects/Final-Project-Selenium/src/src/test/java/logic/api/ApiCalls.java
 /Users/waaedazzam/IdeaProjects/Final-Project-Selenium/src/src/test/java/logic/api/ShoppingCart.java
 /Users/waaedazzam/IdeaProjects/Final-Project-Selenium/src/src/test/java/Steps/Hooks.java
 /Users/waaedazzam/IdeaProjects/Final-Project-Selenium/src/src/test/java/infra/api/WrapApiResponse.java
 /Users/waaedazzam/IdeaProjects/Final-Project-Selenium/src/src/test/java/logic/ui/HomePage.java
+/Users/waaedazzam/IdeaProjects/Final-Project-Selenium/src/src/test/java/logic/ui/Item.java
 /Users/waaedazzam/IdeaProjects/Final-Project-Selenium/src/src/test/java/logic/ui/LoginPopup.java
 /Users/waaedazzam/IdeaProjects/Final-Project-Selenium/src/src/test/java/infra/ui/DriverSetup.java
 /Users/waaedazzam/IdeaProjects/Final-Project-Selenium/src/src/test/java/infra/Config.java
 /Users/waaedazzam/IdeaProjects/Final-Project-Selenium/src/src/test/java/infra/api/HttpFacade.java
+/Users/waaedazzam/IdeaProjects/Final-Project-Selenium/src/src/test/java/logic/ui/SearchPage.java
