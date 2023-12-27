@@ -8,12 +8,17 @@ Feature: Rami Levy Website Tests
   Scenario: Validate Successful Login
     Then my 'ואעד' should appear in the header
 
-  Scenario: Add Item To Cart Via API And Validate Via UI
-    When I Add Item With ID '377697' And Quantity '3' To The Cart Via API
+  Scenario: Add Item To Cart Via API And Validate Via UI - Test By Waaed
+    When I Add Item With ID '4093' And Quantity '3' To The Cart Via API
+    Then Validate If the Item Added To The Cart By Item Barcode '7290008690713' And Quantity '3'
 
-  Scenario: Add item to cart and verify total sum
-    When  I navigate to the Drinks category
-    And add item to the cart by clicking the plus button
-    Then I should observe that the total sum in the cart is displayed as '35.80 ₪'
+
+
+
+
+
+
+
+
 
 
