@@ -16,9 +16,9 @@ public class HomePage extends BasePage {
 
     private static final By ITEM_DIV_TO_ADD = By.xpath("/html/body/div[1]/div/div/div[2]/div[1]/div[2]/div/div/div[1]/div[2]/div[5]/div/div/div[1]/div/img");
 
-    private static final By NUM_OF_ITEMS_IN_CART = By.xpath("//*[@id=\"onlineCartHeader\"]/div[1]/div[1]/span[1]");
-    private static final By CART_SPAN= By.className("currency-wrap");
-    private static final By ESC_DELEVirY = By.xpath("//*[@id=\"close-popup\"]");
+    private static final By NUM_OF_ITEMS_IN_CART = By.xpath("//*[@id='onlineCartHeader']/div[1]/div[1]/span[1]");
+
+    private static final By ESC_DELEVirY = By.xpath("//*[@id='close-popup']");
     private static final By FILTER_BTN = By.xpath("//*[@id=\"search\"]/div/div/div[1]/div/div[1]/div/div[1]/div[3]");
     private static final By SCHWEPPES_FILTER_BTN = By.xpath(" //*[@id=\"__layout\"]/div/div[1]/div[1]/div[3]/div[3]/div/div[1]/div[2]/div/div[3]/div[3]");
 
@@ -26,15 +26,19 @@ public class HomePage extends BasePage {
     private static final By SEARCH_INPUT1 = By.xpath("//*[@id=\"destination\"]");
     private static final By SEARCH_RESULT_PRODUCT_DIV = By.xpath("//*[@id=\"min-height-product-1\"]/div/div/div[2]");
     private static final By DIV_INFORMATION_PRODUCT =By.cssSelector("div[data-v-6039ce16] > div[data-v-6039ce16] > div[data-v-6039ce16]");
-    private static final By CART_SUM = By.xpath("/html//div[@id='__layout']/div[@class='bg-gray-100 nuxt-wrap']//div[@role='complementary']/div[@class='position-relative wrap-online-cart']/div[3]/div[@role='button']//span[@role='hidden']");
     private static final String CART_ITEM_BARCODE = "//div[@id='cart-product-";
     private static final String SEARCH_INPUT = "//*[@id='destination']";
     private static final String SEARCH_BY_VOICE = "//*[@id='search']/div/div/div[1]/div/div[1]/div/div[1]/div[1]/a";
     private static final String SEARCH_DROP_DOWN_BUTTON = "//*[@id='search']/div[2]/div/div[1]/div/div[2]/div/div/div[2]/div[2]/button[2]";
+    private static final By CART_SUM = By.xpath("/html//div[@id='__layout']/div[@class='bg-gray-100 nuxt-wrap']//div[@role='complementary']/div[@class='position-relative wrap-online-cart']/div[3]/div[@role='button']//span[@role='hidden']");
+    private static final By SALE_BUTTON = By.xpath(("//li[@id='sale']/a[@role='button']"));
+    private static final By SALE_PRODUCTS = By.xpath("/html//span[@id='show-sales']");
+    private static final By PRODUCT_ON_SALE = By.xpath("/html//div[@id='main-content']/div[2]/div/div[1]/button//div[@class='position-realtive']");
+    private static final By DISCOUNTED_PRICE = By.xpath("/html/body/div[3]/div[@role='dialog']//div[@class='modal-content']/div/div[@class='wrap-popup-sale-modal']/div[2]/div[2]/div[2]/div[1]/div[1]/div[2]/div/div[3]/div[@class='line-height-1']/div[3]/span/span[@role='hidden']");
 
 
 
-   WebElement divInformationProduct;
+    WebElement divInformationProduct;
     WebElement searchInput;
     WebElement searchResultProductDiv;
 
@@ -44,7 +48,6 @@ public class HomePage extends BasePage {
     WebElement filterBtnElement;
     WebElement numOfItems;
     WebElement CartSum;
-    WebElement cartSpanElement;
 
     WebElement drinksElementBtn;
     WebElement plusElementBtn;
@@ -53,6 +56,14 @@ public class HomePage extends BasePage {
 
     WebElement searchVoice;
     WebElement searchDropDownButton;
+    WebElement sale_button;
+    WebElement Sale_products;
+
+    WebElement product_on_sale;
+    WebElement discounted_price;
+    WebElement origin_price;
+
+
 
     public HomePage(WebDriver driver) {
         super(driver);
@@ -92,17 +103,45 @@ public class HomePage extends BasePage {
         }
     }
 
-    public String getCartSum(){
-        cartSpanElement = driver.findElement(CART_SPAN);
-        String sumCart = cartSpanElement.findElement(By.tagName("span")).getText();
-        // Extract numeric part (remove non-numeric characters)
-        sumCart = sumCart.replaceAll("[^\\d.]", "");
-        float sumWithDelivery = Float.parseFloat(sumCart) + 29.9f;
-        return String.valueOf(sumWithDelivery + " ₪");
-    }
     public String getCartNumOfItems(){
         numOfItems = driver.findElement(NUM_OF_ITEMS_IN_CART);
         return numOfItems.getText();
+    }
+
+    public String getCartSum(){
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        this.CartSum = wait.until(ExpectedConditions.presenceOfElementLocated(CART_SUM));
+        return  this.CartSum.getText();
+    }
+
+
+
+    private void clickSaleButton() {
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        this.sale_button = wait.until(ExpectedConditions.presenceOfElementLocated(SALE_BUTTON));
+        sale_button.click();
+    }
+    private void allSaleProducts() {
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        this.Sale_products = wait.until(ExpectedConditions.presenceOfElementLocated(SALE_PRODUCTS));
+        Sale_products.click();
+    }
+
+    public void onlySaleProducts(){
+        clickSaleButton();
+        allSaleProducts();
+    }
+
+    public void productOnSaleClick(){
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        this.product_on_sale = wait.until(ExpectedConditions.presenceOfElementLocated(PRODUCT_ON_SALE));
+        product_on_sale.click();
+    }
+
+    public String getDiscountedPrice(){
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        this.discounted_price = wait.until(ExpectedConditions.presenceOfElementLocated(DISCOUNTED_PRICE));
+        return this.discounted_price.getText();
     }
     private void clickFilterBtn(){
         WebDriverWait wait = new WebDriverWait(driver, 10);
@@ -124,6 +163,8 @@ public class HomePage extends BasePage {
         String extractSchweppes = fullNameDrinkType.split("\\s+")[0];
         return extractSchweppes;
     }
+
+
 
     public void enterWordToSearch(){
         searchInput = driver.findElement(SEARCH_INPUT1);
@@ -208,5 +249,6 @@ public class HomePage extends BasePage {
         this.searchResultProductDiv = wait.until(ExpectedConditions.presenceOfElementLocated(SEARCH_RESULT_PRODUCT_DIV));
         searchResultProductDiv.click();
     }
+
 }
 

@@ -14,6 +14,7 @@ public class Header extends BasePage {
     WebElement popupButton;
     WebElement userLoggidinName;
     WebElement addToCartButton;
+    WebElement logOutButton;
     public Header(WebDriver driver) {
         super(driver);
         initHeader();
@@ -30,4 +31,6 @@ public class Header extends BasePage {
         this.userLoggidinName = wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(USER_LOGGIDIN_NAME)));
         return  this.userLoggidinName.getText();
     }
+
+
 }
