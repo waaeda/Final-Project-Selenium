@@ -60,11 +60,10 @@ public class Steps {
     }
 
     @When("I click to Drinks category")
-    public void i_click_to_drinks_category() throws InterruptedException {
+    public void i_click_to_drinks_category() {
         DriverSetup driver = context.get("DriverSetup");
         driver.createPage(HomePage.class);
         HomePage homePage = driver.getCurrentPage();
-        Thread.sleep(3000);
         homePage.clickOnDrinksCategory();
     }
 

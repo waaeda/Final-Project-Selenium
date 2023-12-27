@@ -18,7 +18,7 @@ Feature: Rami Levy Website Tests Without Login
     And add item to the cart by clicking the plus button
     Then I should observe that the total sum in the cart is displayed as '35.80 ₪'
 
-  Scenario: Validating Sale Discount -Test By Adim
+  Scenario: Validating Sale Discount - Test By Adim
     When I click on the Sale button in the navbar and then sale only button
     And I select a product under the sale section
     Then I validate that the new price reflects a 20% discount and the Origin price is 21.80
