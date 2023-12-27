@@ -45,7 +45,7 @@ public class Steps {
     }
 
     @And("I enter a valid {string} and {string} and click login button")
-    public void i_enter_a_valid_email_and_password_and_click_login_button(String email, String password) {
+    public void i_enter_a_valid_email_and_password_and_click_login_button(String email, String password) throws InterruptedException {
         DriverSetup driver = context.get("DriverSetup");
         LoginPopup loginPopup = driver.getCurrentPage();
         loginPopup.Login(email, password);
@@ -76,10 +76,42 @@ public class Steps {
     }
 
     @Then("I should see the total sum in the cart is {string}")
-    public void i_should_see_the_total_sum_in_the_cart_is(String string) {
+    public void i_should_see_the_total_sum_in_the_cart_is(String string){
+        DriverSetup driver = context.get("DriverSetup");
+        HomePage homePage = driver.getCurrentPage();;
+        assertEquals(homePage.getCartSum(), string);
+    }
+    @Then("I should see the total amount of items is {string}")
+    public void TotalAmountOfItmesInTheCart(String string){
         DriverSetup driver = context.get("DriverSetup");
         HomePage homePage = driver.getCurrentPage();
-        assertEquals(homePage.getCartSum(), string);
+        assertEquals(homePage.getCartNumOfItems(), string);
+    }
+    @And("I click on filter button and choose schweppes drinks")
+    public void chooseSchweppesDrink(){
+        DriverSetup driver = context.get("DriverSetup");
+        HomePage homePage = driver.getCurrentPage();
+        homePage.chooseShweppesDrink();
+    }
+    @Then("verify i got a schweppes drink")
+    public void verifySchweppesDrinksShowed(){
+        DriverSetup driver = context.get("DriverSetup");
+        HomePage homePage = driver.getCurrentPage();
+        assertEquals(homePage.verifySchweppesDrink(), "שוופס");
+    }
+
+    @When("I type milk in search input and click enter")
+    public void insertToSearchInput(){
+        DriverSetup driver = context.get("DriverSetup");
+        driver.createPage(HomePage.class);
+        HomePage homePage = driver.getCurrentPage();
+        homePage.enterWordToSearch();
+    }
+    @Then("milk products must showed")
+    public void VerifyResultofSearchInput(){
+        DriverSetup driver = context.get("DriverSetup");
+        HomePage homePage = driver.getCurrentPage();
+        assertEquals(homePage.verifyItemViaComponents(), true);
     }
 
     @When("I Add Item With ID {string} And Quantity {string} To The Cart Via API")
@@ -140,4 +172,53 @@ public class Steps {
         SearchPage searchPage = driver.getCurrentPage();
         searchPage.closeDropDown();
     }
+    @When("I click on the Sale button in the navbar and then sale only button")
+    public void i_click_on_the_sale_button_in_the_navbar_and_then_sale_only_button() {
+        DriverSetup driver = context.get("DriverSetup");
+        driver.createPage(HomePage.class);
+        HomePage homePage = driver.getCurrentPage();
+        homePage.onlySaleProducts();
+
+
+
+    }
+    @When("I select a product under the sale section")
+    public void i_select_a_product_under_the_sale_section() {
+        DriverSetup driver = context.get("DriverSetup");
+        driver.createPage(HomePage.class);
+        HomePage homePage = driver.getCurrentPage();
+        homePage.productOnSaleClick();
+    }
+    @Then("I validate that the new price reflects a {int}% discount and the Origin price is {float}")
+    public void i_validate_that_the_new_price_reflects_a_discount_and_the_Origin_price_is(Integer precentage, Float origin_price) {
+        DriverSetup driver = context.get("DriverSetup");
+        HomePage homePage = driver.getCurrentPage();
+        float discount =origin_price *(1-((float) precentage / 100));
+        String discountedPrice= String.valueOf(discount);
+        assertEquals(homePage.getDiscountedPrice() , discountedPrice+" ₪");
+    }
+    @When("I navigate to the Drinks category")
+    public void i_navigate_to_the_category() {
+        // Write code here that turns the phrase above into concrete
+        DriverSetup driver = context.get("DriverSetup");
+        driver.createPage(HomePage.class);
+        HomePage homePage = driver.getCurrentPage();
+        homePage.clickOnDrinksCategory();
+    }
+
+    @And("add item to the cart by clicking the plus button")
+    public void add_item_to_the_cart_by_clicking_the_plus_button() {
+        DriverSetup driver = context.get("DriverSetup");
+        HomePage homePage = driver.getCurrentPage();
+        homePage.addItemToCart();
+
+    }
+
+    @Then("I should observe that the total sum in the cart is displayed as {string}")
+    public void i_should_observe_that_the_total_sum_in_the_cart_is_displayed_as(String string) {
+        DriverSetup driver = context.get("DriverSetup");
+        HomePage homePage = driver.getCurrentPage();
+        assertEquals(homePage.getCartSum(), string);
+    }
+
 }

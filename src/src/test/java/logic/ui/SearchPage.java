@@ -8,37 +8,38 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class SearchPage extends BasePage {
-    private static final String PAGE_TITLE = "//*[@id='result-search']/div/span[2]";
-    private static final String CLOSE_DROP_DOWN = "//*[@id='search']/div[2]/div/div[1]/div/div[1]/div/div[1]/div[1]/div/a";
+    private final String PAGE_TITLE = "//*[@id='result-search']/div/span[2]";
+    private final String CLOSE_DROP_DOWN = "//*[@id='search']/div[2]/div/div[1]/div/div[1]/div/div[1]/div[1]/div/a";
 
-    WebElement pageTitle;
-    WebElement firstItemName;
-    WebElement closeDropDown;
+    private WebElement pageTitle;
+    private WebElement firstItemName;
+    private WebElement closeDropDown;
+
     public SearchPage(WebDriver driver) {
         super(driver);
         initPage();
     }
 
+    WebDriverWait wait;
+
     private void initPage() {
-        WebDriverWait wait = new WebDriverWait(this.driver, 10);
+        wait = new WebDriverWait(this.driver, 20);
         pageTitle = wait.until(ExpectedConditions.elementToBeClickable(By.xpath(PAGE_TITLE)));
     }
 
     public String getPageTitle() {
-        return  pageTitle.getText();
+        return pageTitle.getText();
     }
 
     public boolean checkIfItemFound(String itemName) {
-        WebDriverWait wait = new WebDriverWait(this.driver, 10);
         firstItemName = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[text()='" + itemName + "']")));
-        if (firstItemName != null){
+        if (firstItemName != null) {
             return true;
         }
         return false;
     }
 
-    public void closeDropDown(){
-        WebDriverWait wait = new WebDriverWait(this.driver, 10);
+    public void closeDropDown() {
         closeDropDown = wait.until(ExpectedConditions.elementToBeClickable(By.xpath(CLOSE_DROP_DOWN)));
         this.closeDropDown.click();
     }
