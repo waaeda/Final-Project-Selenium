@@ -12,6 +12,8 @@ Feature: Rami Levy Website Tests
     When I Add Item With ID '377697' And Quantity '3' To The Cart Via API
 
   Scenario: Add item to cart and verify total sum
-    When I click to Drinks category
-    And I click to plus button on item and add it to the cart
-    Then I should see the total sum in the cart is '35.80 ₪'
+    When  I navigate to the Drinks category
+    And add item to the cart by clicking the plus button
+    Then I should observe that the total sum in the cart is displayed as '35.80 ₪'
+
+

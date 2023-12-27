@@ -1,10 +1,7 @@
 package logic.ui;
 
 import infra.ui.BasePage;
-import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -17,12 +14,23 @@ public class HomePage extends BasePage {
     private static final By NUM_OF_ITEMS_IN_CART = By.xpath("//*[@id=\"onlineCartHeader\"]/div[1]/div[1]/span[1]");
     private static final By CART_SUM = By.xpath("/html//div[@id='__layout']/div[@class='bg-gray-100 nuxt-wrap']//div[@role='complementary']/div[@class='position-relative wrap-online-cart']/div[3]/div[@role='button']//span[@role='hidden']");
 
+    private static final By SALE_BUTTON = By.xpath(("//li[@id='sale']/a[@role='button']"));
+    private static final By SALE_PRODUCTS = By.xpath("/html//span[@id='show-sales']");
+    private static final By PRODUCT_ON_SALE = By.xpath("/html//div[@id='main-content']/div[2]/div/div[1]/button//div[@class='position-realtive']");
+    private static final By DISCOUNTED_PRICE = By.xpath("/html/body/div[5]/div[@role='dialog']//div[@class='modal-content']/div/div[@class='wrap-popup-sale-modal']/div[2]/div[2]/div[2]/div[1]/div[1]/div[2]/div/div[3]/div[@class='line-height-1']/div[3]/span/span[@role='hidden']");
+
     WebElement numOfItems;
 
     WebElement CartSum;
     WebElement drinksElementBtn;
     WebElement plusElementBtn;
     WebElement divElementToAdd;
+    WebElement sale_button;
+    WebElement Sale_products;
+
+    WebElement product_on_sale;
+    WebElement discounted_price;
+    WebElement origin_price;
 
     public HomePage(WebDriver driver) {
         super(driver);
@@ -63,4 +71,35 @@ public class HomePage extends BasePage {
         this.CartSum = wait.until(ExpectedConditions.presenceOfElementLocated(CART_SUM));
         return  this.CartSum.getText();
     }
+
+    private void clickSaleButton() {
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        this.sale_button = wait.until(ExpectedConditions.presenceOfElementLocated(SALE_BUTTON));
+        sale_button.click();
+    }
+    private void allSaleProducts() {
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        this.Sale_products = wait.until(ExpectedConditions.presenceOfElementLocated(SALE_PRODUCTS));
+        Sale_products.click();
+    }
+
+    public void onlySaleProducts(){
+        clickSaleButton();
+        allSaleProducts();
+    }
+
+    public void productOnSaleClick(){
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        this.product_on_sale = wait.until(ExpectedConditions.presenceOfElementLocated(PRODUCT_ON_SALE));
+        product_on_sale.click();
+    }
+
+    public String getDiscountedPrice(){
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        this.discounted_price = wait.until(ExpectedConditions.presenceOfElementLocated(DISCOUNTED_PRICE));
+        return this.discounted_price.getText();
+    }
+
+
+
 }

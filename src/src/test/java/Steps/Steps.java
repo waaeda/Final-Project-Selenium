@@ -14,6 +14,7 @@ import logic.ui.LoginPopup;
 
 import java.io.IOException;
 
+import static java.lang.Float.parseFloat;
 import static org.testng.Assert.assertEquals;
 
 public class Steps {
@@ -58,24 +59,25 @@ public class Steps {
         assertEquals(header.getLoggedInName(), name);
     }
 
-    @When("I click to Drinks category")
-    public void i_click_to_drinks_category() {
+    @When("I navigate to the Drinks category")
+    public void i_navigate_to_the_category() {
+        // Write code here that turns the phrase above into concrete
         DriverSetup driver = context.get("DriverSetup");
         driver.createPage(HomePage.class);
         HomePage homePage = driver.getCurrentPage();
         homePage.clickOnDrinksCategory();
     }
 
-    @And("I click to plus button on item and add it to the cart")
-    public void i_click_to_plus_button_on_item_and_add_it_to_the_cart() {
+    @And("add item to the cart by clicking the plus button")
+    public void add_item_to_the_cart_by_clicking_the_plus_button() {
         DriverSetup driver = context.get("DriverSetup");
         HomePage homePage = driver.getCurrentPage();
         homePage.addItemToCart();
 
     }
 
-    @Then("I should see the total sum in the cart is {string}")
-    public void i_should_see_the_total_sum_in_the_cart_is(String string) {
+    @Then("I should observe that the total sum in the cart is displayed as {string}")
+    public void i_should_observe_that_the_total_sum_in_the_cart_is_displayed_as(String string) {
         DriverSetup driver = context.get("DriverSetup");
         HomePage homePage = driver.getCurrentPage();
         assertEquals(homePage.getCartSum(), string);
@@ -87,4 +89,29 @@ public class Steps {
         shoppingCart.addItemToCartViaApi(itemId, QTY);
     }
 
+    @When("I click on the Sale button in the navbar and then sale only button")
+    public void i_click_on_the_sale_button_in_the_navbar_and_then_sale_only_button() {
+        DriverSetup driver = context.get("DriverSetup");
+        driver.createPage(HomePage.class);
+        HomePage homePage = driver.getCurrentPage();
+        homePage.onlySaleProducts();
+
+
+
+    }
+    @When("I select a product under the sale section")
+    public void i_select_a_product_under_the_sale_section() {
+        DriverSetup driver = context.get("DriverSetup");
+        driver.createPage(HomePage.class);
+        HomePage homePage = driver.getCurrentPage();
+        homePage.productOnSaleClick();
+    }
+    @Then("I validate that the new price reflects a {int}% discount and the Origin price is {float}")
+    public void i_validate_that_the_new_price_reflects_a_discount_and_the_Origin_price_is(Integer precentage, Float origin_price) {
+        DriverSetup driver = context.get("DriverSetup");
+        HomePage homePage = driver.getCurrentPage();
+        float discount =origin_price *(1-((float) precentage / 100));
+        String discountedPrice= String.valueOf(discount);
+        assertEquals(homePage.getDiscountedPrice() , discountedPrice+" ₪");
+    }
 }

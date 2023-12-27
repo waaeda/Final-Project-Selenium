@@ -1,10 +1,12 @@
 logic\ui\LoginPopup.class
 infra\api\HttpFacade.class
+Steps\Steps.class
 infra\ui\BasePage.class
 infra\ui\DriverSetup.class
 logic\ui\Header.class
 logic\api\ApiCalls.class
 infra\api\WrapApiResponse.class
+infra\TestContext.class
 infra\api\HttpMethod.class
 logic\api\ShoppingCart.class
 Steps\Hooks.class
